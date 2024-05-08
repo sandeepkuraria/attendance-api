@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/auth", authRoutes);
 app.use("/", locationRoutes);
 app.get("/", (req, res) => {
-  res.send("products api running changed version");
+  res.send("Sandeep you just deployed your API..................");
 });
 const PORT = process.env.PORT ;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
