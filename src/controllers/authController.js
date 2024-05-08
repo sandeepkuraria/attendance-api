@@ -5,11 +5,6 @@ const db = require("../models/User");
 const login = (req, res) => {
   const { userId, password, latitude, longitude } = req.body;
 
-  // Retrieve user from the database
-  // db.query(
-  //   "SELECT * FROM attendancedb.users WHERE userId = ?",
-  //   [userId],
-  //   (err, results) => {
   db.getUserById(userId, (err, results) => {
     if (err) {
       console.error("Database error: ", err);
@@ -24,12 +19,7 @@ const login = (req, res) => {
             console.error("Password comparison error: ", err);
             res.status(500).json({ error: "Internal server error" });
           } else {
-            // const token = req.headers.authorization;
-            // console.log("Token from authenticatToken backend:", token); // Log the token value
-
-            // console.log("Provided password:", password);
-            // console.log("Hashed password from DB:", results[0].password);
-            // console.log("Is password match:", isMatch);
+            
             console.log("you successfully logged in :)");
             if (isMatch) {
               // Password is correct, generate JWT token
@@ -39,11 +29,7 @@ const login = (req, res) => {
                 { expiresIn: "1h" }
               );
 
-              // Save user's current location
-              // db.query(
-              //   "UPDATE attendancedb.users SET latitude = ?, longitude = ? WHERE userId = ?",
-              //   [latitude, longitude, userId],
-              //   (err, result) => {
+            
               db.updateUserLocation(
                 latitude,
                 longitude,
@@ -94,11 +80,7 @@ const register = (req, res) => {
       console.error("Password hashing error: ", err);
       res.status(500).json({ error: "Internal server error" });
     } else {
-      // Insert user into the database with hashed password
-      // db.query(
-      //   "INSERT INTO attendancedb.users (userId, password, latitude, longitude) VALUES (?, ?, ?, ?)",
-      //   [userId, hashedPassword, latitude, longitude],
-      //   (err, result) => {
+ 
       db.createUser(
         userId,
         hashedPassword,
@@ -117,23 +99,5 @@ const register = (req, res) => {
   });
 };
 
-// const authenticationTokencheck = (req, res, next) => {
-//   const token = req.headers.authorization;
-
-//   if (!token) {
-//     res.status(401).json({ error: "Unauthorized: Missing token" });
-//   } else {
-//     console.log("Token from authenticatToken backend:", token); // Log the token value
-
-//     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-//       if (err) {
-//         res.status(401).json({ error: "Unauthorized: Invalid token" });
-//       } else {
-//         req.userId = decoded.userId;
-//         next();
-//       }
-//     });
-//   }
-// };
 
 module.exports = { login, register };

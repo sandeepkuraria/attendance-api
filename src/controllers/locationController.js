@@ -9,10 +9,7 @@ const saveLocation = (req, res) => {
   }
 
   // Save location data to the database
-  // db.query(
-  //   "INSERT INTO attendancedb.locations (userId, latitude, longitude) VALUES (?, ?, ?)",
-  //   [userId, latitude, longitude],
-  //   (err, result) => {
+
   db.saveUserLocation(userId, latitude, longitude, (err, result) => {
     if (err) {
       console.error("Database insertion error: ", err);
