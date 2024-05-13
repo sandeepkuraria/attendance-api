@@ -16,14 +16,14 @@ db.connect((err) => {
   }
   console.log("Connected to database");
 });
-// Create the database if it doesn't exist
-db.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_DATABASE}`, (err, result) => {
-  if (err) {
-    console.error("Error creating database: " + err.stack);
-    return;
-  }
-  console.log("Database created or already exists");
-});
+// // Create the database if it doesn't exist
+// db.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_DATABASE}`, (err, result) => {
+//   if (err) {
+//     console.error("Error creating database: " + err.stack);
+//     return;
+//   }
+//   console.log("Database created or already exists");
+// });
 // Select the database
 db.query(`USE ${process.env.DB_DATABASE}`, (err, result) => {
   if (err) {
