@@ -47,5 +47,5 @@ module.exports = { saveUserLocation };
 
 
 // Call the function to set the database timezone and create the locations table
-setDatabaseTimezone();
+// setDatabaseTimezone();
 createLocationsTable();
