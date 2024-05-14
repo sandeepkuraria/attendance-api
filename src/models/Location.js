@@ -1,15 +1,15 @@
 const db = require("../config/db");
 
-// Function to set the timezone for the MySQL database to +05:30 (India Standard Time)
-const setDatabaseTimezone = () => {
-  db.query("SET GLOBAL time_zone = '+05:30'", (err, result) => {
-    if (err) {
-      console.error("Error setting database timezone: " + err.stack);
-      return;
-    }
-    console.log("Database timezone set to +05:30 (India Standard Time)");
-  });
-};
+// // Function to set the timezone for the MySQL database to +05:30 (India Standard Time)
+// const setDatabaseTimezone = () => {
+//   db.query("SET GLOBAL time_zone = '+05:30'", (err, result) => {
+//     if (err) {
+//       console.error("Error setting database timezone: " + err.stack);
+//       return;
+//     }
+//     console.log("Database timezone set to +05:30 (India Standard Time)");
+//   });
+// };
 
 
 // Function to create the locations table if it doesn't exist
@@ -33,6 +33,8 @@ const createLocationsTable = () => {
 
 // Function to save user location to the database
 const saveUserLocation = (userId, latitude, longitude, callback) => {
+  db.query(`SET time_zone = '+05:30'`); // Set session time zone to Indian Standard Time
+
   db.query(
     "INSERT INTO locations (userId, latitude, longitude) VALUES (?, ?, ?)",
     [userId, latitude, longitude],
