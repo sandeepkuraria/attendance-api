@@ -12,24 +12,24 @@ const db = require("../config/db");
 // };
 
 
-// Function to create the locations table if it doesn't exist
-const createLocationsTable = () => {
-  db.query(`
-    CREATE TABLE IF NOT EXISTS locations (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      userId INT NOT NULL,
-      latitude DECIMAL(10, 8) NOT NULL,
-      longitude DECIMAL(11, 8) NOT NULL,
-      createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-  `, (err, result) => {
-    if (err) {
-      console.error("Error creating locations table: " + err.stack);
-      return;
-    }
-    console.log("Locations table created or already exists");
-  });
-};
+// // Function to create the locations table if it doesn't exist
+// const createLocationsTable = () => {
+//   db.query(`
+//     CREATE TABLE IF NOT EXISTS locations (
+//       id INT AUTO_INCREMENT PRIMARY KEY,
+//       userId INT NOT NULL,
+//       latitude DECIMAL(10, 8) NOT NULL,
+//       longitude DECIMAL(11, 8) NOT NULL,
+//       createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+//     )
+//   `, (err, result) => {
+//     if (err) {
+//       console.error("Error creating locations table: " + err.stack);
+//       return;
+//     }
+//     console.log("Locations table created or already exists");
+//   });
+// };
 
 // Function to save user location to the database
 const saveUserLocation = (userId, latitude, longitude, callback) => {
@@ -48,4 +48,4 @@ module.exports = { saveUserLocation };
 
 // Call the function to set the database timezone and create the locations table
 // setDatabaseTimezone();
-createLocationsTable();
+// createLocationsTable();
