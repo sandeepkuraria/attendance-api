@@ -33,7 +33,7 @@ const createLocationsTable = () => {
 
 // Function to save user location to the database
 const saveUserLocation = (userId, latitude, longitude, callback) => {
-  db.query(`SET time_zone = '+05:30'`); // Set session time zone to Indian Standard Time
+  // db.query(`SET time_zone = '+05:30'`); // Set session time zone to Indian Standard Time
 
   db.query(
     "INSERT INTO locations (userId, latitude, longitude) VALUES (?, ?, ?)",
